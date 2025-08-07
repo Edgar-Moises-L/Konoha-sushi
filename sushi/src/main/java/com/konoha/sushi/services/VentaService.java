@@ -11,6 +11,12 @@ import java.util.List;
 public class VentaService implements IVentaService {
     @Autowired
     private VentaRepositiry ventaRepositiry;
+
+    @Override
+    public VentaDto getByFolio(String folio) {
+        return null;
+    }
+
     @Override
     public VentaDto getById(Long id) {
         return null;

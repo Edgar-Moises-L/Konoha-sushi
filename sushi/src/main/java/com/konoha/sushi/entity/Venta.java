@@ -13,6 +13,7 @@ public class Venta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
+    private String folio;
     private LocalDateTime fecha;
     private Double total;
 

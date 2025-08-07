@@ -5,6 +5,7 @@ import com.konoha.sushi.dto.VentaDto;
 import java.util.List;
 
 public interface IVentaService {
+    VentaDto getByFolio(String folio);
     VentaDto getById(Long id);
     List<VentaDto> getAll();
     VentaDto add(VentaDto ventaDto);

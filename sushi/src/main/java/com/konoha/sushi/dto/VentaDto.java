@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class VentaDto {
     private Long id;
+    private String folio;
     private LocalDateTime fecha;
     private Double total;
     private List<VentaDetalleDto> detalle;

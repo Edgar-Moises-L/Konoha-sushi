@@ -19,6 +19,7 @@ public class VentaMapper {
     public VentaDto toDto(Venta venta) {
         VentaDto dto = new VentaDto();
         dto.setId(venta.getId());
+        dto.setFolio(venta.getFolio());
         dto.setFecha(venta.getFecha());
         dto.setTotal(venta.getTotal());
 
@@ -37,6 +38,7 @@ public class VentaMapper {
     public Venta toEntity(VentaDto dto) {
         Venta venta = new Venta();
         venta.setId(dto.getId());
+        venta.setFolio(dto.getFolio());
         venta.setFecha(dto.getFecha());
         venta.setTotal(dto.getTotal());
 
