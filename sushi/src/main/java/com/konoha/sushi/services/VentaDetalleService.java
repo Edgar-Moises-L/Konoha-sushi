@@ -2,9 +2,10 @@ package com.konoha.sushi.services;
 
 import com.konoha.sushi.dto.VentaDetalleDto;
 import com.konoha.sushi.services.abstraction.IVentaDetalleService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class VentaDetalleService implements IVentaDetalleService {
     @Override
     public VentaDetalleDto getById(Long id) {

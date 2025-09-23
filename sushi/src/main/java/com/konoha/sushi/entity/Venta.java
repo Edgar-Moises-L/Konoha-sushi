@@ -17,7 +17,7 @@ public class Venta {
     private LocalDateTime fecha;
     private Double total;
 
-    @OneToMany(mappedBy = "detalle",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<VentaDetalle> detalle;
 
 }

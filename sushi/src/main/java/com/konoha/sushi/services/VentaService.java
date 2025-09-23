@@ -5,9 +5,10 @@ import com.konoha.sushi.exception.ResourceNotFoundException;
 import com.konoha.sushi.repository.VentaRepositiry;
 import com.konoha.sushi.services.abstraction.IVentaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class VentaService implements IVentaService {
     @Autowired
     private VentaRepositiry ventaRepositiry;
