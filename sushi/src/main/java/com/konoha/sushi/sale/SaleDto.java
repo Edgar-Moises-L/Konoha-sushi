@@ -10,7 +10,7 @@ import java.util.List;
 public class SaleDto {
     private Long id;
     private String folio;
-    private LocalDateTime fecha;
+    private LocalDateTime date;
     private Double total;
-    private List<SaleDetailDto> detalle;
+    private List<SaleDetailDto> detail;
 }

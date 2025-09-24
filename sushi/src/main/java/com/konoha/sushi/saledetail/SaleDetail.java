@@ -5,18 +5,18 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "venta-detalle")
+@Table(name = "sale-detail")
 @Data
 public class SaleDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    private String nombreArticulo;
-    private Integer cantidad;
-    private Double precio;
+    private String productName;
+    private Integer quantity;
+    private Double price;
 
     @ManyToOne
-    @JoinColumn(name = "venta_id",nullable = false)
-    private Sale venta;
+    @JoinColumn(name = "sale_id",nullable = false)
+    private Sale sale;
 
 }

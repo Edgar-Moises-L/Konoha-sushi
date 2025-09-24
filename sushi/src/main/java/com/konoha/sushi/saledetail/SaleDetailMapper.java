@@ -6,30 +6,30 @@ import org.springframework.stereotype.Component;
 @Component
 public class SaleDetailMapper {
 
-    public SaleDetailDto toDto(SaleDetail detalle) {
+    public SaleDetailDto toDto(SaleDetail detail) {
         SaleDetailDto dto = new SaleDetailDto();
-        dto.setId(detalle.getId());
-        dto.setNombreArticulo(detalle.getNombreArticulo());
-        dto.setCantidad(detalle.getCantidad());
-        dto.setPrecio(detalle.getPrecio());
+        dto.setId(detail.getId());
+        dto.setProductName(detail.getProductName());
+        dto.setQuantity(detail.getQuantity());
+        dto.setPrice(detail.getPrice());
 
-        if (detalle.getVenta() != null) {
-            dto.setFacturaId(detalle.getVenta().getId());
+        if (detail.getSale() != null) {
+            dto.setSaleId(detail.getSale().getId());
         }
 
         return dto;
     }
 
-    public SaleDetail toEntity(SaleDetailDto dto, Sale venta) {
-        SaleDetail detalle = new SaleDetail();
-        detalle.setId(dto.getId());
-        detalle.setNombreArticulo(dto.getNombreArticulo());
-        detalle.setCantidad(dto.getCantidad());
-        detalle.setPrecio(dto.getPrecio());
+    public SaleDetail toEntity(SaleDetailDto dto, Sale sale) {
+        SaleDetail detail = new SaleDetail();
+        detail.setId(dto.getId());
+        detail.setProductName(dto.getProductName());
+        detail.setQuantity(dto.getQuantity());
+        detail.setPrice(dto.getPrice());
 
-        detalle.setVenta(venta);
+        detail.setSale(sale);
 
-        return detalle;
+        return detail;
     }
 }
 

@@ -18,12 +18,12 @@ public class SaleDetailService implements ISaleDetailService {
     }
 
     @Override
-    public SaleDetailDto add(SaleDetailDto ventaDetalleDto) {
+    public SaleDetailDto add(SaleDetailDto saleDetailDto) {
         return null;
     }
 
     @Override
-    public SaleDetailDto update(Long id, SaleDetailDto ventaDetalleDto) {
+    public SaleDetailDto update(Long id, SaleDetailDto saleDetailDto) {
         return null;
     }
 

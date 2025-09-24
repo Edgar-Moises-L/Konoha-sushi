@@ -8,7 +8,7 @@ public interface ISaleService {
     SaleDto getByFolio(String folio);
     SaleDto getById(Long id);
     List<SaleDto> getAll();
-    SaleDto add(SaleDto ventaDto);
-    SaleDto update(Long id, SaleDto ventaDto);
+    SaleDto add(SaleDto saleDto);
+    SaleDto update(Long id, SaleDto saleDto);
     void deletById(Long id);
 }

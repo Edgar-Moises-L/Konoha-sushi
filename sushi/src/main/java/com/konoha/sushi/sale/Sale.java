@@ -8,17 +8,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "venta")
+@Table(name = "sale")
 @Data
 public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     private String folio;
-    private LocalDateTime fecha;
+    private LocalDateTime date;
     private Double total;
 
-    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<SaleDetail> detalle;
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<SaleDetail> detail;
 
 }

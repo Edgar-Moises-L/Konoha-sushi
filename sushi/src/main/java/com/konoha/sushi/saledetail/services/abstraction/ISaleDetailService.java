@@ -8,7 +8,7 @@ import java.util.List;
 public interface ISaleDetailService {
     SaleDetailDto getById(Long id);
     List<SaleDetailDto> getAll();
-    SaleDetailDto add(SaleDetailDto ventaDetalleDto);
-    SaleDetailDto update(Long id, SaleDetailDto ventaDetalleDto);
+    SaleDetailDto add(SaleDetailDto saleDetailDto);
+    SaleDetailDto update(Long id, SaleDetailDto saleDetailDto);
     void deletById(Long id);
 }

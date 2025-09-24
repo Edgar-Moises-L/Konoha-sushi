@@ -13,44 +13,44 @@ import java.util.stream.Collectors;
 public class SaleMapper {
 
    @Autowired
-   private SaleDetailMapper detalleMapper;
+   private SaleDetailMapper saleDetailMapper;
 
-    public SaleDto toDto(Sale venta) {
+    public SaleDto toDto(Sale sale) {
         SaleDto dto = new SaleDto();
-        dto.setId(venta.getId());
-        dto.setFolio(venta.getFolio());
-        dto.setFecha(venta.getFecha());
-        dto.setTotal(venta.getTotal());
+        dto.setId(sale.getId());
+        dto.setFolio(sale.getFolio());
+        dto.setDate(sale.getDate());
+        dto.setTotal(sale.getTotal());
 
-        if (venta.getDetalle() != null) {
-            List<SaleDetailDto> detalleDtos = venta.getDetalle()
+        if (sale.getDetail() != null) {
+            List<SaleDetailDto> detalleDtos = sale.getDetail()
                     .stream()
-                    .map(detalleMapper::toDto)
+                    .map(saleDetailMapper::toDto)
                     .collect(Collectors.toList());
 
-            dto.setDetalle(detalleDtos);
+            dto.setDetail(detalleDtos);
         }
 
         return dto;
     }
 
     public Sale toEntity(SaleDto dto) {
-        Sale venta = new Sale();
-        venta.setId(dto.getId());
-        venta.setFolio(dto.getFolio());
-        venta.setFecha(dto.getFecha());
-        venta.setTotal(dto.getTotal());
+        Sale sale = new Sale();
+        sale.setId(dto.getId());
+        sale.setFolio(dto.getFolio());
+        sale.setDate(dto.getDate());
+        sale.setTotal(dto.getTotal());
 
-        if (dto.getDetalle() != null) {
-            List<SaleDetail> detalles = dto.getDetalle()
+        if (dto.getDetail() != null) {
+            List<SaleDetail> detail = dto.getDetail()
                     .stream()
-                    .map(dDto -> detalleMapper.toEntity(dDto, venta))
+                    .map(dDto -> saleDetailMapper.toEntity(dDto, sale))
                     .collect(Collectors.toList());
 
-            venta.setDetalle(detalles);
+            sale.setDetail(detail);
         }
 
-        return venta;
+        return sale;
     }
 }
 

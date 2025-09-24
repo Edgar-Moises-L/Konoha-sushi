@@ -9,45 +9,45 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/venta")
+@RequestMapping("/api/sale")
 public class SaleController {
     @Autowired
-    private ISaleService ventaService;
+    private ISaleService saleService;
 
-    @GetMapping("/buscar/{folio}")
+    @GetMapping("/search/{folio}")
     public ResponseEntity<SaleDto> findByFolio(@PathVariable String folio) {
-        SaleDto venta = ventaService.getByFolio(folio);
-        return ResponseEntity.ok(venta);
+        SaleDto sale = saleService.getByFolio(folio);
+        return ResponseEntity.ok(sale);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<SaleDto> getById(@PathVariable Long id) {
-        SaleDto venta = ventaService.getById(id);
-        return ResponseEntity.ok(venta);
+        SaleDto sale = saleService.getById(id);
+        return ResponseEntity.ok(sale);
     }
 
     @GetMapping
     public ResponseEntity<List<SaleDto>> getAll(){
-        List<SaleDto> ventas = ventaService.getAll();
-        return ResponseEntity.ok(ventas);
+        List<SaleDto> sales = saleService.getAll();
+        return ResponseEntity.ok(sales);
     }
 
     @PostMapping
-    public ResponseEntity<SaleDto> add(@RequestBody SaleDto ventaDto){
-        SaleDto venta = ventaService.add(ventaDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(venta);
+    public ResponseEntity<SaleDto> add(@RequestBody SaleDto saleDto){
+        SaleDto sale = saleService.add(saleDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(sale);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<SaleDto> update(@PathVariable Long id, @RequestBody SaleDto vetaDto){
-        SaleDto venta = ventaService.update(id, vetaDto);
-        return ResponseEntity.ok(venta);
+    public ResponseEntity<SaleDto> update(@PathVariable Long id, @RequestBody SaleDto saleDto){
+        SaleDto sale = saleService.update(id, saleDto);
+        return ResponseEntity.ok(sale);
 
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletById(@PathVariable Long id){
-        ventaService.deletById(id);
+        saleService.deletById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class SaleService implements ISaleService {
     @Autowired
-    private SaleRepositiry ventaRepositiry;
+    private SaleRepositiry saleRepositiry;
 
     @Override
     public SaleDto getByFolio(String folio) {
@@ -29,20 +29,20 @@ public class SaleService implements ISaleService {
     }
 
     @Override
-    public SaleDto add(SaleDto ventaDto) {
+    public SaleDto add(SaleDto saleDto) {
         return null;
     }
 
     @Override
-    public SaleDto update(Long id, SaleDto ventaDto) {
+    public SaleDto update(Long id, SaleDto saleDto) {
         return null;
     }
 
     @Override
     public void deletById(Long id) {
-        if(!ventaRepositiry.existsById(id)){
+        if(!saleRepositiry.existsById(id)){
             throw new ResourceNotFoundException("Venta con ID " + id + " no encontrado");
         }
-        ventaRepositiry.deleteById(id);
+        saleRepositiry.deleteById(id);
     }
 }
