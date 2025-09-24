@@ -1,6 +1,5 @@
 package com.konoha.sushi.exception;
 
-import com.konoha.sushi.entity.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
