@@ -1,4 +1,4 @@
-package com.konoha.sushi.config;//package com.example.login.config;
+//package com.konoha.sushi.config.security;
 //
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
@@ -12,16 +12,10 @@ package com.konoha.sushi.config;//package com.example.login.config;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.http.SessionCreationPolicy;
-//import org.springframework.security.core.userdetails.User;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 //import org.springframework.security.web.SecurityFilterChain;
-//
-//import java.util.ArrayList;
-//import java.util.List;
+//import org.springframework.web.cors.CorsConfiguration;
 //
 //@Configuration
 //@EnableWebSecurity
@@ -31,23 +25,17 @@ package com.konoha.sushi.config;//package com.example.login.config;
 //    @Bean
 //    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 //        return httpSecurity
-//                .csrf(csrf-> csrf.disable())
+//                .cors(cors -> cors.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
+//                .csrf(csrf -> csrf.disable())
 //                .httpBasic(Customizer.withDefaults())
-//                .sessionManagement(sessiom -> sessiom.sessionCreationPolicy(SessionCreationPolicy.STATELESS) )
-//                .authorizeHttpRequests(http -> {
-//                    http.requestMatchers(HttpMethod.GET, "/api/auth/hello").permitAll();
-//                    http.requestMatchers(HttpMethod.GET, "/api/auth/hello-security").hasAuthority("CREATE");
-//                    http.anyRequest().denyAll();
-//                })
-//                .build();
-//    }
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .authorizeHttpRequests(auth -> {
+//                    auth.requestMatchers(HttpMethod.GET, "/api/login").permitAll();
+//                    auth.requestMatchers(HttpMethod.PUT, "/api/users").permitAll();
 //
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-//        return httpSecurity
-//                .csrf(csrf-> csrf.disable())
-//                .httpBasic(Customizer.withDefaults())
-//                .sessionManagement(sessiom -> sessiom.sessionCreationPolicy(SessionCreationPolicy.STATELESS) )
+//                    auth.requestMatchers(HttpMethod.GET, "/api/auth/hello-security").hasAuthority("CREATE");
+//                    auth.anyRequest().denyAll();
+//                })
 //                .build();
 //    }
 //
@@ -63,7 +51,6 @@ package com.konoha.sushi.config;//package com.example.login.config;
 //        provider.setUserDetailsService(null);
 //        return provider;
 //    }
-//
 //
 //
 //    @Bean
