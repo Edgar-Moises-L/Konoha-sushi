@@ -1,4 +1,4 @@
-package com.konoha.sushi.exception;
+package com.konoha.sushi.config.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

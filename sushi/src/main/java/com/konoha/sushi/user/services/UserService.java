@@ -8,7 +8,7 @@ import com.konoha.sushi.user.UserRepository;
 import com.konoha.sushi.user.services.abstraction.IUserService;
 import com.konoha.sushi.role.ERole;
 import com.konoha.sushi.role.RoleEntity;
-import com.konoha.sushi.exception.ResourceNotFoundException;
+import com.konoha.sushi.config.exception.ResourceNotFoundException;
 import com.konoha.sushi.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

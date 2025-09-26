@@ -5,7 +5,7 @@ import com.konoha.sushi.role.RoleDto;
 import com.konoha.sushi.role.ERole;
 import com.konoha.sushi.permission.PermissionEntity;
 import com.konoha.sushi.role.RoleEntity;
-import com.konoha.sushi.exception.ResourceNotFoundException;
+import com.konoha.sushi.config.exception.ResourceNotFoundException;
 import com.konoha.sushi.permission.PermissionMap;
 import com.konoha.sushi.role.RoleMap;
 import com.konoha.sushi.permission.PermissionRepository;

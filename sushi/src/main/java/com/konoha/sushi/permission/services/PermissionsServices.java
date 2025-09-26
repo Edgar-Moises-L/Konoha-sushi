@@ -3,7 +3,7 @@ package com.konoha.sushi.permission.services;
 
 import com.konoha.sushi.permission.PermissionDto;
 import com.konoha.sushi.permission.PermissionEntity;
-import com.konoha.sushi.exception.ResourceNotFoundException;
+import com.konoha.sushi.config.exception.ResourceNotFoundException;
 import com.konoha.sushi.permission.PermissionMap;
 import com.konoha.sushi.permission.PermissionRepository;
 import com.konoha.sushi.permission.services.abstraction.IPermissionService;

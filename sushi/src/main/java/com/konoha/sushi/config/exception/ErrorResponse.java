@@ -1,4 +1,4 @@
-package com.konoha.sushi.exception;
+package com.konoha.sushi.config.exception;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.Getter;
