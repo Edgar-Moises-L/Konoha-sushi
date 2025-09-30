@@ -12,30 +12,28 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
 
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .cors(cors -> cors.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
                 .csrf(csrf -> csrf.disable())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(HttpMethod.GET, "/api/login").permitAll();
-                    auth.requestMatchers(HttpMethod.PUT, "/api/users").permitAll();
-
-                    auth.requestMatchers(HttpMethod.GET, "/api/auth/hello-security").hasAuthority("CREATE");
-                    auth.anyRequest().denyAll();
+                .authorizeHttpRequests(http -> {
+                    http.requestMatchers(HttpMethod.POST, "/api/users").permitAll();
+                    http.requestMatchers(HttpMethod.GET, "/api/users").hasAuthority("READ");
+                    http.requestMatchers(HttpMethod.DELETE, "/api/users/**").hasAuthority("DELETE");
+                    http.anyRequest().denyAll();
                 })
                 .build();
     }

@@ -21,20 +21,24 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepository.findByUserName(username).orElseThrow(()->new UsernameNotFoundException("usario no encontrado"));
+        UserEntity userEntity = userRepository.findByUserName(username)
+                .orElseThrow(()->new UsernameNotFoundException("usario no encontrado"));
+
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
 
-       userEntity.getRole().forEach(role->authorityList .add(new SimpleGrantedAuthority("ROLE_".concat(role.getRoleEnum().name()))));
-       userEntity.getRole().stream()
-               .flatMap(role -> role.getPermission().stream())
-               .forEach(permissionEntity -> authorityList.add(new SimpleGrantedAuthority(permissionEntity.getName())));
+       userEntity.getRole()
+               .forEach(role->authorityList.add(new SimpleGrantedAuthority("ROLE_".concat(role.getRoleEnum().name()))));
 
-       return new User(userEntity.getUserName(),
-               userEntity.getPassword(),
-               userEntity.isEnabled(),
-               userEntity.isAccountNoExpired(),
-               userEntity.isCredentialNoExpired(),
-               userEntity.isAccountNoLocked(),
-               authorityList);
+       userEntity.getRole().stream()
+                .flatMap(role -> role.getPermission().stream())
+                .forEach(permissionEntity -> authorityList.add(new SimpleGrantedAuthority(permissionEntity.getName())));
+
+        return new User(userEntity.getUserName(),
+                userEntity.getPassword(),
+                userEntity.isEnabled(),
+                userEntity.isAccountNoExpired(),
+                userEntity.isCredentialNoExpired(),
+                userEntity.isAccountNoLocked(),
+                authorityList);
     }
 }

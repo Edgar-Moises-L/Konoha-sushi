@@ -2,6 +2,7 @@ package com.konoha.sushi.user;
 
 
 import com.konoha.sushi.role.RoleEntity;
+import jakarta.persistence.Column;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -35,7 +36,10 @@ public class UserMap {
         entity.setEmail(dto.getEmail());
         entity.setUserName(dto.getUserName());
         entity.setPassword(dto.getPassword());
-
+        entity.setEnabled(true);
+        entity.setAccountNoExpired(true);
+        entity.setAccountNoLocked(true);
+        entity.setCredentialNoExpired(true);
         return entity;
     }
 

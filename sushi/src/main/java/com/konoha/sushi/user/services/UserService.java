@@ -45,6 +45,10 @@ public class UserService implements IUserService {
                 .collect(Collectors.toSet());
 
         user.setRole(roles);
+        user.setEnabled(true);
+        user.setAccountNoExpired(true);
+        user.setAccountNoLocked(true);
+        user.setCredentialNoExpired(true);
 
         UserEntity newUser = userRepository.save(user);
         return userMap.toDto(newUser);
