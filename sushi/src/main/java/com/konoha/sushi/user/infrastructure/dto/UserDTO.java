@@ -1,6 +1,5 @@
-package com.konoha.sushi.user;
+package com.konoha.sushi.user.infrastructure.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -12,16 +11,16 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class UserDTO {
 
     private Long id;
+
+    @NotBlank
+    private String userName;
 
     @Email
     @NotBlank
     private String email;
-
-    @NotBlank
-    private String userName;
 
     @NotBlank
     private String password;

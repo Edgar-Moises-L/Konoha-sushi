@@ -1,8 +1,9 @@
-package com.konoha.sushi.user;
+package com.konoha.sushi.user.infrastructure.mapper;
 
 
 import com.konoha.sushi.role.RoleEntity;
-import jakarta.persistence.Column;
+import com.konoha.sushi.user.infrastructure.dto.UserDTO;
+import com.konoha.sushi.user.infrastructure.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
@@ -11,12 +12,12 @@ import java.util.stream.Collectors;
 @Component
 public class UserMap {
 
-    public UserDto toDto(UserEntity entity) {
+    public UserDTO toDto(UserEntity entity) {
         if (entity == null) {
             return null;
         }
 
-        UserDto dto = new UserDto();
+        UserDTO dto = new UserDTO();
         dto.setId(entity.getId());
         dto.setEmail(entity.getEmail());
         dto.setUserName(entity.getUserName());
@@ -27,7 +28,7 @@ public class UserMap {
     }
 
 
-    public UserEntity toEntity(UserDto dto) {
+    public UserEntity toEntity(UserDTO dto) {
         if (dto == null) {
             return null;
         }
