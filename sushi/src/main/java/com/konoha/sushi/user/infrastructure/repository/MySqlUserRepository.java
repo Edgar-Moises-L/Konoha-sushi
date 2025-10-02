@@ -23,26 +23,26 @@ public class MySqlUserRepository implements UserRepository {
 
     @Override
     public Optional<User> findById(Long id) {
-        return Optional.empty();
+        return springUserRepository.findById(id).map(userMap::userEntityToUser);
     }
 
     @Override
     public List<User> findAll() {
-        return List.of();
+        return springUserRepository.findAll().stream().map(userMap::userEntityToUser).toList();
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return Optional.empty();
+        return springUserRepository.findByEmail(email).map(userMap::userEntityToUser);
     }
 
     @Override
     public Boolean existsByEmail(String email) {
-        return null;
+        return springUserRepository.existsByEmail(email);
     }
 
     @Override
     public void deleteById(Long id) {
-
+        springUserRepository.deleteById(id);
     }
 }

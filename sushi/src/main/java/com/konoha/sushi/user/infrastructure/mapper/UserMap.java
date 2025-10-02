@@ -1,53 +1,53 @@
 package com.konoha.sushi.user.infrastructure.mapper;
 
-
-import com.konoha.sushi.role.RoleEntity;
+import com.konoha.sushi.user.domain.Role;
+import com.konoha.sushi.user.domain.User;
 import com.konoha.sushi.user.infrastructure.dto.UserDTO;
 import com.konoha.sushi.user.infrastructure.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Component
 public class UserMap {
 
-    public UserDTO toDto(UserEntity entity) {
-        if (entity == null) {
-            return null;
-        }
-
-        UserDTO dto = new UserDTO();
-        dto.setId(entity.getId());
-        dto.setEmail(entity.getEmail());
-        dto.setUserName(entity.getUserName());
-        dto.setPassword(entity.getPassword());
-        dto.setRoles(entityToString(entity.getRole()));
-
-        return dto;
+    public User userEntityToUser(UserEntity userEntity){
+        if(userEntity == null)return null;
+        User user = new User();
+        user.setId(userEntity.getId());
+        user.setUserName(userEntity.getUserName());
+        user.setEmail(userEntity.getEmail());
+        user.setPassword(userEntity.getPassword());
+        user.setRole(userEntity.getRole());
+        return user;
     }
 
+//    public UserEntity userToUserEntity(User user){
+//        return null;
+//    }
 
-    public UserEntity toEntity(UserDTO dto) {
-        if (dto == null) {
-            return null;
-        }
-        UserEntity entity = new UserEntity();
-        entity.setId(dto.getId());
-        entity.setEmail(dto.getEmail());
-        entity.setUserName(dto.getUserName());
-        entity.setPassword(dto.getPassword());
-        entity.setEnabled(true);
-        entity.setAccountNoExpired(true);
-        entity.setAccountNoLocked(true);
-        entity.setCredentialNoExpired(true);
-        return entity;
+    public UserDTO userToUserDTO(User user){
+        if(user == null)return null;
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setUserName(user.getUserName());
+        userDTO.setEmail(user.getEmail());
+        userDTO.setRole(user.getRole().name());
+        return userDTO;
     }
 
-    private Set<String> entityToString(Set<RoleEntity> roles) {
-        return roles.stream()
-                .map(r -> r.getRoleEnum().name())
-                .collect(Collectors.toSet());
+    public User userDTOToUser(UserDTO userDTO){
+        if(userDTO == null)return null;
+        User user = new User();
+        user.setId(userDTO.getId());
+        user.setUserName(userDTO.getUserName());
+        user.setEmail(userDTO.getEmail());
+        user.setRole(Role.valueOf(userDTO.getRole()));
+        return user;
     }
+
+//    public User registerRequestToUser(RegisterRequest registerRequest){
+//        return null;
+//    }
+
 }
 

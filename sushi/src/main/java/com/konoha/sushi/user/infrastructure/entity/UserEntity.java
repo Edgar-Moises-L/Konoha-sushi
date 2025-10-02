@@ -18,9 +18,9 @@ import java.util.List;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table(name = "users")
 public class UserEntity implements UserDetails {
     @Id
@@ -35,9 +35,11 @@ public class UserEntity implements UserDetails {
     @Email
     @NotBlank
     @Size(max = 80)
+    @Column(unique = true)
     private String email;
 
     @NotBlank
+    @Size(max = 16)
     private String password;
 
     @Enumerated(EnumType.STRING)
