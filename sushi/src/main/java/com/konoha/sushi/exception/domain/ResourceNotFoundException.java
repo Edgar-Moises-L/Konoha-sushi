@@ -1,4 +1,4 @@
-package com.konoha.sushi.config.exception;
+package com.konoha.sushi.exception.domain;
 
 
 public class ResourceNotFoundException extends RuntimeException {

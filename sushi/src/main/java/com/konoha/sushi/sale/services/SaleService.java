@@ -1,7 +1,7 @@
 package com.konoha.sushi.sale.services;
 
 import com.konoha.sushi.sale.SaleDto;
-import com.konoha.sushi.config.exception.ResourceNotFoundException;
+import com.konoha.sushi.exception.domain.ResourceNotFoundException;
 import com.konoha.sushi.sale.SaleRepositiry;
 import com.konoha.sushi.sale.services.abstraction.ISaleService;
 import org.springframework.beans.factory.annotation.Autowired;

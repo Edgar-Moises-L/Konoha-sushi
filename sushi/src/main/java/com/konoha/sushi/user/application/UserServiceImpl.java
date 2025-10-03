@@ -1,7 +1,7 @@
 package com.konoha.sushi.user.application;
 
 
-import com.konoha.sushi.config.exception.ResourceNotFoundException;
+import com.konoha.sushi.exception.domain.ResourceNotFoundException;
 import com.konoha.sushi.user.domain.UserService;
 import com.konoha.sushi.user.domain.User;
 import com.konoha.sushi.user.domain.UserRepository;

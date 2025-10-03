@@ -4,7 +4,7 @@ import com.konoha.sushi.user.domain.UserService;
 import com.konoha.sushi.user.domain.User;
 import com.konoha.sushi.user.infrastructure.dto.UserDTO;
 import com.konoha.sushi.user.infrastructure.mapper.UserMap;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@RequiredArgsConstructor
 public class UserControllerImpl implements UserController {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private UserMap userMap;
+    private final UserService userService;
+    private final UserMap userMap;
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
