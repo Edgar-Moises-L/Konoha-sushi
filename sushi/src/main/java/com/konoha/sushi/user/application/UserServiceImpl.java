@@ -5,15 +5,17 @@ import com.konoha.sushi.exception.domain.ResourceNotFoundException;
 import com.konoha.sushi.user.domain.UserService;
 import com.konoha.sushi.user.domain.User;
 import com.konoha.sushi.user.domain.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserRepository userRepository;
+
+    private final UserRepository userRepository;
 
     @Override
     public User update(Long id, User updateUser) {

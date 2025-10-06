@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface SpringUserRepository extends JpaRepository<UserEntity, Long> {
 
-    Boolean existsByEmail(String email);
+    Boolean existsByUserName(String userName);
 
-    Optional<UserEntity> findByEmail(String email);
+    Optional<UserEntity> findByUserName(String userName);
 }

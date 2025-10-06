@@ -39,7 +39,6 @@ public class UserEntity implements UserDetails {
     private String email;
 
     @NotBlank
-    @Size(max = 16)
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -51,13 +50,13 @@ public class UserEntity implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
     @Override
-    public String getPassword() {
-        return password;
+    public String getUsername() {
+        return userName;
     }
 
     @Override
@@ -78,5 +77,9 @@ public class UserEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

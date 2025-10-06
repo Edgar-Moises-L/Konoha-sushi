@@ -1,5 +1,6 @@
 package com.konoha.sushi.user.infrastructure.mapper;
 
+import com.konoha.sushi.auth.infrastructure.RegisterRequest;
 import com.konoha.sushi.user.domain.Role;
 import com.konoha.sushi.user.domain.User;
 import com.konoha.sushi.user.infrastructure.dto.UserDTO;
@@ -21,9 +22,18 @@ public class UserMap {
         return user;
     }
 
-//    public UserEntity userToUserEntity(User user){
-//        return null;
-//    }
+
+    public UserEntity userToUserEntity(User user){
+        if (user == null) return null;
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(user.getId());
+        userEntity.setUserName(user.getUserName());
+        userEntity.setEmail(user.getEmail());
+        userEntity.setPassword(user.getPassword());
+        userEntity.setRole(user.getRole());
+        return userEntity;
+    }
+
 
     public UserDTO userToUserDTO(User user){
         if(user == null)return null;
@@ -45,9 +55,14 @@ public class UserMap {
         return user;
     }
 
-//    public User registerRequestToUser(RegisterRequest registerRequest){
-//        return null;
-//    }
+    public User registerRequestToUser(RegisterRequest registerRequest){
+        if(registerRequest==null)return null;
+        User user = new User();
+        user.setUserName(registerRequest.getUserName());
+        user.setEmail(registerRequest.getEmail());
+        user.setPassword(registerRequest.getPassword());
+        return user;
+    }
 
 }
 
