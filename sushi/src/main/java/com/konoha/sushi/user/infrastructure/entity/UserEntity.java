@@ -35,7 +35,6 @@ public class UserEntity implements UserDetails {
     @Email
     @NotBlank
     @Size(max = 80)
-    @Column(unique = true)
     private String email;
 
     @NotBlank

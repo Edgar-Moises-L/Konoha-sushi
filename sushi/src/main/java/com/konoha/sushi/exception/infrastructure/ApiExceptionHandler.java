@@ -13,11 +13,10 @@ public class ApiExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handlerResourceNotFoundException(HttpServletRequest request, ResourceNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(buildResponse(e, HttpStatus.NOT_FOUND));
+                .body(buildResponse(e, HttpStatus.NOT_FOUND,request));
     }
 
-
-    public ErrorResponse buildResponse(Exception e, HttpStatus httpStatus) {
-        return new ErrorResponse(e, httpStatus.value());
+    public ErrorResponse buildResponse(Exception e, HttpStatus httpStatus, HttpServletRequest request) {
+        return new ErrorResponse(e, httpStatus.value(), request.getRequestURI());
     }
 }

@@ -7,12 +7,11 @@ import com.konoha.sushi.user.infrastructure.dto.UserDTO;
 import com.konoha.sushi.user.infrastructure.entity.UserEntity;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class UserMap {
 
-    public User userEntityToUser(UserEntity userEntity){
-        if(userEntity == null)return null;
+    public User userEntityToUser(UserEntity userEntity) {
+        if (userEntity == null) return null;
         User user = new User();
         user.setId(userEntity.getId());
         user.setUserName(userEntity.getUserName());
@@ -23,7 +22,7 @@ public class UserMap {
     }
 
 
-    public UserEntity userToUserEntity(User user){
+    public UserEntity userToUserEntity(User user) {
         if (user == null) return null;
         UserEntity userEntity = new UserEntity();
         userEntity.setId(user.getId());
@@ -35,8 +34,8 @@ public class UserMap {
     }
 
 
-    public UserDTO userToUserDTO(User user){
-        if(user == null)return null;
+    public UserDTO userToUserDTO(User user) {
+        if (user == null) return null;
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setUserName(user.getUserName());
@@ -45,8 +44,8 @@ public class UserMap {
         return userDTO;
     }
 
-    public User userDTOToUser(UserDTO userDTO){
-        if(userDTO == null)return null;
+    public User userDTOToUser(UserDTO userDTO) {
+        if (userDTO == null) return null;
         User user = new User();
         user.setId(userDTO.getId());
         user.setUserName(userDTO.getUserName());
@@ -55,8 +54,8 @@ public class UserMap {
         return user;
     }
 
-    public User registerRequestToUser(RegisterRequest registerRequest){
-        if(registerRequest==null)return null;
+    public User registerRequestToUser(RegisterRequest registerRequest) {
+        if (registerRequest == null) return null;
         User user = new User();
         user.setUserName(registerRequest.getUserName());
         user.setEmail(registerRequest.getEmail());

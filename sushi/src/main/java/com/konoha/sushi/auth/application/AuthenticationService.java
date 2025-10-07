@@ -37,29 +37,19 @@ public class AuthenticationService {
 
         String jwtToken = jwtService.generateToken(userEntity);
 
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
+        return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUserName(),
-                        request.getPassword()
-                )
-        );
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword()));
 
-        User user = userRepository.findByUserName(request.getUserName())
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        User user = userRepository.findByUserName(request.getUserName()).orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         UserEntity userEntity = userMapper.userToUserEntity(user);
 
         String jwtToken = jwtService.generateToken(userEntity);
 
-        return AuthenticationResponse.builder()
-                .token(jwtToken)
-                .build();
+        return AuthenticationResponse.builder().token(jwtToken).build();
     }
 }

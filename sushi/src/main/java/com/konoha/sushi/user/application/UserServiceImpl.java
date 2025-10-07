@@ -1,12 +1,10 @@
 package com.konoha.sushi.user.application;
 
-
 import com.konoha.sushi.exception.domain.ResourceNotFoundException;
 import com.konoha.sushi.user.domain.UserService;
 import com.konoha.sushi.user.domain.User;
 import com.konoha.sushi.user.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

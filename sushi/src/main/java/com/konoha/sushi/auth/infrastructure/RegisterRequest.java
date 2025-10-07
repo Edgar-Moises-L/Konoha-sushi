@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.UniqueElements;
 
 @Data
 @Builder
@@ -21,7 +20,6 @@ public class RegisterRequest {
     @NotNull(message = "The email is mandatory")
     @NotBlank(message = "The email is mandatory")
     @Email(message = "The given email does not match the pattern")
-    @UniqueElements()
     private String email;
     @NotNull(message = "The password is mandatory")
     @NotBlank(message = "The password is mandatory")
