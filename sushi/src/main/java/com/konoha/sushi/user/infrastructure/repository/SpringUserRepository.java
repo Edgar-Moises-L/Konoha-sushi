@@ -13,5 +13,9 @@ public interface SpringUserRepository extends JpaRepository<UserEntity, Long> {
 
     Boolean existsByEmail(String email);
 
+    Boolean existsByUserNameAndIdNot(String userName, Long id);
+
+    Boolean existsByEmailAndIdNot(String email, Long id);
+
     Optional<UserEntity> findByUserName(String userName);
 }

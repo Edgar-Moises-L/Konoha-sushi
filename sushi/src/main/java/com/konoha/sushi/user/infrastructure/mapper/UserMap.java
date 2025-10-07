@@ -21,7 +21,6 @@ public class UserMap {
         return user;
     }
 
-
     public UserEntity userToUserEntity(User user) {
         if (user == null) return null;
         UserEntity userEntity = new UserEntity();
@@ -33,13 +32,13 @@ public class UserMap {
         return userEntity;
     }
 
-
     public UserDTO userToUserDTO(User user) {
         if (user == null) return null;
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setUserName(user.getUserName());
         userDTO.setEmail(user.getEmail());
+        userDTO.setPassword(user.getPassword());
         userDTO.setRole(user.getRole().name());
         return userDTO;
     }
@@ -50,6 +49,7 @@ public class UserMap {
         user.setId(userDTO.getId());
         user.setUserName(userDTO.getUserName());
         user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
         user.setRole(Role.valueOf(userDTO.getRole()));
         return user;
     }

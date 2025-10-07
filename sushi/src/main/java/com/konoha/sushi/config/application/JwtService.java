@@ -83,6 +83,5 @@ public class JwtService {
         }
         return generateToken(userDetails);
     }
-
 }
 
