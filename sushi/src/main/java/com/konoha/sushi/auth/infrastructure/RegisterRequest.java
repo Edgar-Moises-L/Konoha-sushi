@@ -17,12 +17,15 @@ public class RegisterRequest {
     @NotNull(message = "The userName is mandatory")
     @NotBlank(message = "The userName is mandatory")
     private String userName;
+
     @NotNull(message = "The email is mandatory")
     @NotBlank(message = "The email is mandatory")
     @Email(message = "The given email does not match the pattern")
     private String email;
+
     @NotNull(message = "The password is mandatory")
     @NotBlank(message = "The password is mandatory")
     @Length(min = 5, message = "The password should be at least of 5 characters of length")
     private String password;
+
 }

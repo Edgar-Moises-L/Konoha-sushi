@@ -45,6 +45,11 @@ public class MySqlUserRepository implements UserRepository {
     }
 
     @Override
+    public Boolean existsByEmail(String email) {
+        return springUserRepository.existsByEmail(email);
+    }
+
+    @Override
     public void deleteById(Long id) {
         springUserRepository.deleteById(id);
     }

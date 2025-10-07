@@ -27,7 +27,13 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(User user) {
 
-        if (userRepository.findByUserName(user.getUserName()).isPresent()) throw new ResourceNotFoundException("error");
+        if (userRepository.existsByUserName(user.getUserName())) {
+            throw new IllegalArgumentException("The username is already taken");
+        }
+
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new IllegalArgumentException("The email is already registered");
+        }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.USER);
