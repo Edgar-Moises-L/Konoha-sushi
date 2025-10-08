@@ -20,6 +20,8 @@ public interface UserRepository {
 
     Boolean existsByEmailAndIdNot(String email, Long id);
 
+    Boolean existsById(Long id);
+
     void deleteById(Long id);
 
 }
