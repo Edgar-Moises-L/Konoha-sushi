@@ -3,7 +3,6 @@ package com.konoha.sushi.product.infrastructure;
 import com.konoha.sushi.product.domain.Product;
 import com.konoha.sushi.product.domain.ProductService;
 import com.konoha.sushi.product.infrastructure.dto.ProductDTO;
-import com.konoha.sushi.product.infrastructure.entiry.ProductEntity;
 import com.konoha.sushi.product.infrastructure.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,32 +20,33 @@ public class ProductControllerImpl implements ProductController {
 
     @PostMapping
     public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO) {
-        Product product = productMapper.dtoToProduct(productDTO);
+        Product product = productMapper.productDTOToProduct(productDTO);
         Product savedProduct = productService.save(product);
-        ProductDTO response = productMapper.productToDto(savedProduct);
+        ProductDTO response = productMapper.productToProductDTO(savedProduct);
         return ResponseEntity.status(HttpStatus.CREATED).body(response) ;
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
-        Product product = productMapper.dtoToProduct(productDTO);
+        Product product = productMapper.productDTOToProduct(productDTO);
         Product update = productService.update(id, product);
-        ProductDTO updateDTO = productMapper.productToDto(update);
+        ProductDTO updateDTO = productMapper.productToProductDTO(update);
         return ResponseEntity.ok(updateDTO);
     }
 
     @GetMapping
     public ResponseEntity<List<ProductDTO>> findAll() {
-        return productService.findAll()
+        List<ProductDTO> productDTO = productService.findAll()
                 .stream()
-                .map(productMapper::productToDto)
+                .map(productMapper::productToProductDTO)
                 .toList();
+        return ResponseEntity.ok(productDTO);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
         Product product = productService.findById(id);
-        ProductDTO productDTO = productMapper.productToDto(product);
+        ProductDTO productDTO = productMapper.productToProductDTO(product);
         return ResponseEntity.ok(productDTO);
     }
 

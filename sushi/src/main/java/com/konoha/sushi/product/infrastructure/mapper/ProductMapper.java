@@ -38,7 +38,7 @@ public class ProductMapper {
 
         ProductDTO dto = new ProductDTO();
         dto.setId(product.getId());
-        dto.setCategory(product.getCategory() != null ? product.getCategory().name() : null);
+        dto.setCategory(product.getCategory().name());
         dto.setName(product.getName());
         dto.setDescription(product.getDescription());
         dto.setPrice(product.getPrice());
@@ -49,9 +49,7 @@ public class ProductMapper {
         if (dto == null) return null;
         Product product = new Product();
         product.setId(dto.getId());
-        if (dto.getCategory() != null && !dto.getCategory().isBlank()) {
-            product.setCategory(Category.valueOf(dto.getCategory().toUpperCase()));
-        }
+        product.setCategory(Category.valueOf(dto.getCategory()));
         product.setName(dto.getName());
         product.setDescription(dto.getDescription());
         product.setPrice(dto.getPrice());
