@@ -4,6 +4,7 @@ import com.konoha.sushi.product.domain.Product;
 import com.konoha.sushi.product.domain.ProductService;
 import com.konoha.sushi.product.infrastructure.dto.ProductDTO;
 import com.konoha.sushi.product.infrastructure.mapper.ProductMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class ProductControllerImpl implements ProductController {
     private final ProductMapper productMapper;
 
     @PostMapping
-    public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductDTO> save(@Valid @RequestBody ProductDTO productDTO) {
         Product product = productMapper.productDTOToProduct(productDTO);
         Product savedProduct = productService.save(product);
         ProductDTO response = productMapper.productToProductDTO(savedProduct);
@@ -27,7 +28,7 @@ public class ProductControllerImpl implements ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> update(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductDTO> update( @PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
         Product product = productMapper.productDTOToProduct(productDTO);
         Product update = productService.update(id, product);
         ProductDTO updateDTO = productMapper.productToProductDTO(update);

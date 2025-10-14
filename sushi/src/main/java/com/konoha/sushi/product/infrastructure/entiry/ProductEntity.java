@@ -21,7 +21,6 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private Category category;
 

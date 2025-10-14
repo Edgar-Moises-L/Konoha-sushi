@@ -4,6 +4,7 @@ import com.konoha.sushi.user.domain.UserService;
 import com.konoha.sushi.user.domain.User;
 import com.konoha.sushi.user.infrastructure.dto.UserDTO;
 import com.konoha.sushi.user.infrastructure.mapper.UserMap;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> update(@Valid  @PathVariable Long id, @RequestBody UserDTO userDTO) {
         User user = userMap.userDTOToUser(userDTO);
         User updated = userService.update(id, user);
         UserDTO updateDTO = userMap.userToUserDTO(updated);
