@@ -8,6 +8,8 @@ public interface ProductRepository {
 
     List<Product> findAll();
 
+    List<Product> findByCategory(Category category);
+
     Optional<Product> findById(Long id);
 
     Boolean existsByName(String name);

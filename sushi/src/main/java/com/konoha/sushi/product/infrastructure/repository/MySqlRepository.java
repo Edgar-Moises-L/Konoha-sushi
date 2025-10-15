@@ -1,5 +1,6 @@
 package com.konoha.sushi.product.infrastructure.repository;
 
+import com.konoha.sushi.product.domain.Category;
 import com.konoha.sushi.product.domain.Product;
 import com.konoha.sushi.product.domain.ProductRepository;
 
@@ -28,6 +29,15 @@ public class MySqlRepository implements ProductRepository {
     @Override
     public List<Product> findAll() {
         return springProductRepository.findAll()
+                .stream()
+                .map(productMapper::productEntityToProduct)
+                .toList();
+    }
+
+    @Override
+    public List<Product> findByCategory(Category category) {
+
+        return springProductRepository.findByCategory(category)
                 .stream()
                 .map(productMapper::productEntityToProduct)
                 .toList();

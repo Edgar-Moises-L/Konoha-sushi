@@ -1,6 +1,7 @@
 package com.konoha.sushi.product.application;
 
 import com.konoha.sushi.exception.domain.ResourceNotFoundException;
+import com.konoha.sushi.product.domain.Category;
 import com.konoha.sushi.product.domain.Product;
 import com.konoha.sushi.product.domain.ProductRepository;
 import com.konoha.sushi.product.domain.ProductService;
@@ -38,6 +39,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public List<Product> findByCategory(String category) {
+        Category cat = Category.valueOf(category.toUpperCase());
+        return productRepository.findByCategory(cat);
     }
 
     @Override

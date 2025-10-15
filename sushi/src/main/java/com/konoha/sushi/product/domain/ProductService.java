@@ -9,6 +9,8 @@ public interface ProductService {
 
     List<Product> findAll();
 
+    List<Product> findByCategory(String category);
+
     Product findById(Long id);
 
     void delete(Long id);

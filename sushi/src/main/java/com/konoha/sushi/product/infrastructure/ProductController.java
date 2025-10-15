@@ -12,6 +12,8 @@ public interface ProductController {
 
     ResponseEntity<List<ProductDTO>> findAll();
 
+    ResponseEntity<List<ProductDTO>> findByCategory(String category);
+
     ResponseEntity<ProductDTO> findById(Long id);
 
     ResponseEntity<Void> delet(Long id);
