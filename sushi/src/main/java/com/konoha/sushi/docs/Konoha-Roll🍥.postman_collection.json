@@ -1,0 +1,686 @@
+{
+	"info": {
+		"_postman_id": "603dcd69-c9f0-4b40-b1b6-e272818b12d9",
+		"name": "Konoha-Roll🍥",
+		"description": "### 📦 Sistema de Gestión de Pedidos y Compras para Konoha-Roll\n\nEste proyecto expone una API REST diseñada para gestionar las operaciones principales de un restauran local, incluyendo:\n\n- Registro y autenticación de **usuarios con roles diferenciados**:\n    \n    - `Administrador`: acceso completo al sistema (gestión de productos, compras, pedidos, usuarios).\n        \n    - `Empleado`: acceso limitado a operaciones de pedidos y consultas.\n        \n- **Gestión de pedidos de clientes**:\n    \n    - Registro de pedidos con productos, cantidades, precios y datos de la compra.\n        \n- **Gestión de compras del local a proveedores**:\n    \n    - Registro de compras que hace el local para abastecerse.\n        \n\n### 🔐 Autenticación\n\nLa API utiliza autenticación basada en tokens JWT. Es necesario autenticarse para acceder a la mayoría de los endpoints.\n\n### 🗂️ Organización\n\nLa colección está organizada por módulos:\n\n- `/auth`: Registro y login de usuarios.\n    \n- `/users`: Gestión de usuarios.\n    \n- `/`\n    \n\n<img src=\"https://content.pstmn.io/bae6ec84-4f66-4b74-9504-e681d19ebd8c/aW1hZ2UucG5n\" width=\"163\" height=\"186\">",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40855309"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"\r",
+									"if (response.token) {\r",
+									"    pm.environment.set(\"token\", response.token);\r",
+									"    console.log(\"Token guardado correctamente:\", response.token);\r",
+									"} else {\r",
+									"    console.error(\"No se encontró el campo 'token' en la respuesta\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"moises\",\r\n  \"password\": \"Admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/authenticate",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"\r",
+									"if (response.token) {\r",
+									"    pm.environment.set(\"token\", response.token);\r",
+									"    console.log(\"Token guardado correctamente:\", response.token);\r",
+									"} else {\r",
+									"    console.error(\"No se encontró el campo 'token' en la respuesta\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userName\": \"moises\",\r\n  \"email\": \"moises@gmail.com\",\r\n  \"password\": \"Admin123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "## 🔐API para la gestion de autenticación y registro de usuarios\n\nEsta sección contiene las peticiones relacionadas con el **proceso de autenticación y gestión de usuarios** dentro del sistema.\n\nPermite registrar nuevos usuarios y autenticar credenciales válidas para obtener un **token JWT**, el cual será requerido para acceder a las operaciones protegidas del sistema (el token se guarda en una variable de entorno de forma automatica al registrarse o al hacer login).\n\n### 🗂️ Autenticación y Registro\n\nLas diferentes peticiones están organizadas de la siguiente manera:\n\n#### ➕ Creación\n\n- `POST /auth/register`\n    \n\nRegistra un nuevo usario en el sistema. Requiere los datos de nombre, correo electrónico y contraseña.\n\n- `POST /auth/authenticate`\n    \n\nPermite que un usuario existente inicie sesión en el sistema proporcionando sus credenciales(userName, password).  \nSi las credenciales son correctas, el sistema devuelve un **token JWT**"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id\", 5);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "   {\r\n        \"userName\": \"moiseswwbgg\",\r\n        \"email\": \"juan.perezrrrwww@bcvbcvbe.com\",\r\n        \"password\":\"Moispsayco100\",\r\n        \"role\":\"USER\"\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/users/{{id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ById",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id\", 5);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id\", 5);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/users/{{id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "### 💲 API para la gestion de usuarios\n\nEsta sección contiene las peticiones relacionadas con la administración de usuarios en el sistema. Incluye operaciones para la **consulta**, **modificación** y **listado** de lo los diferentes usuarios.\n\n### 🗂️ Gestión de las Usuarios\n\nLas diferentes peticiones estan organizadas de la siguiente manera:\n\n#### 🔍 Consultas\n\n- `GET /api/user/{id}`\n    \n    Obtiene los datos de una usuario específica a partir de su **ID**.\n    \n- `GET /api/user`\n    \n    Recupera el listado completo de usuarios registradas en el sistema.\n    \n\n#### ✏️ Actualización\n\n- `PUT /api/user/{id}`\n    \n    Actualiza los datos de un usario existente identificada por su **ID**.\n    \n\n#### 🗑️ Eliminación\n\n- `DELETE /api/user/{id}`\n    \n    Elimina un usuario específica del sistema según su **ID**."
+		},
+		{
+			"name": "Sales",
+			"item": [
+				{
+					"name": "Add sale",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"folio\": \"F001\",\r\n  \"date\": \"2025-09-24T12:30:00\",\r\n  \"total\": 150.0,\r\n  \"detail\": [\r\n    {\r\n      \"productName\": \"Sushi Roll\",\r\n      \"quantity\": 2,\r\n      \"price\": 50.0\r\n    },\r\n    {\r\n      \"productName\": \"Miso Soup\",\r\n      \"quantity\": 1,\r\n      \"price\": 50.0\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/sale",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"folio\": \"F12345\",\r\n  \"date\": \"2025-09-24T12:30:00\",\r\n  \"total\": 150.0,\r\n  \"detail\": [\r\n    {\r\n      \"productName\": \"Sushi Roll\",\r\n      \"quantity\": 2,\r\n      \"price\": 50.0\r\n    },\r\n    {\r\n      \"productName\": \"Miso Soup\",\r\n      \"quantity\": 1,\r\n      \"price\": 50.0\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/sale/{{id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sale",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ByFolio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sale/search/{{Folio}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sale",
+								"search",
+								"{{Folio}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sale/{{id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sale",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sale",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/sale/{{id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"sale",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "### 💲 API para la gestion de las ventas\n\nEsta sección contiene las peticiones relacionadas con la administración de las ventas en el sistema. Incluye operaciones para la **creación**, **consulta**, **modificación** y **listado** de las distinatas ventas asi como sus detalles registrados en la aplicación.\n\n### 🗂️ Gestión de las Ventas\n\nLas diferentes peticiones estan organizadas de la siguiente manera:\n\n#### 🔍 Consultas\n\n- `GET /api/venta/buscar/{folio}`\n    \n    Busca una venta por su folio y devuelve una respuesta booleana indicando si existe.\n    \n- `GET /api/venta/{id}`\n    \n    Obtiene los datos de una venta específica a partir de su **ID**.\n    \n- `GET /api/usuario`\n    \n    Recupera el listado completo de ventas registradas en el sistema.\n    \n\n#### ➕ Creación\n\n- `POST /api/venta`\n    \n    Registra una nueva venta en el sistema. Requiere datos como la lista de productos comprados con su nombre, cantidad y precio.\n    \n\n#### ✏️ Actualización\n\n- `PUT /api/venta/{id}`\n    \n    Actualiza los datos de una venta existente identificada por su **ID**.\n    \n\n#### 🗑️ Eliminación\n\n- `DELETE /api/venta/{id}`\n    \n    Elimina una venta específica del sistema según su **ID**."
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"empanizado\",\r\n    \"description\": \"empanizado.\",\r\n    \"price\": 5,\r\n    \"category\": \"EXTRAS\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id\", 37);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Gai roll\",\r\n        \"description\": \"Pollo, res, tocino, philadelphia, aguacate y pepino por dentro, gratinado con mechas de cangrejo y cebollin revuelto con salsa de anguila y camarones empanizados con un punto de spicy\",\r\n        \"price\": 135.0,\r\n        \"category\": \"ESPECIALES\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/products/{{id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ById",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id\", 2);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/{{id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ByCategory",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"category\", \"ENTRADAS\");\r",
+									"\r",
+									"// Categorias\r",
+									"\r",
+									"    //  ENTRADAS\r",
+									"    //  NATURALES\r",
+									"    //  EMPANIZADOS\r",
+									"    //  HORNEADOS\r",
+									"    //  ESPECIALES\r",
+									"    //  BEBIDAS\r",
+									"    //  EXTRAS"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/category/{{category}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"category",
+								"{{category}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id\", 1);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/products/{{id}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"products",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
